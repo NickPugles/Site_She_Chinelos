@@ -44,9 +44,9 @@ function renderizarLista(itens) {
                 '</div></td>' +
                 '<td><span class="badge bg-secondary">' + (item.tamanho ?? 'Único') + '</span></td>' +
                 '<td><div class="stepper justify-content-center">' +
-                '<button type="button" data-acao="diminuir" data-id="' + item.id + '" data-tamanho="' + item.tamanho + '">−</button>' +
-                '<span>' + item.qtd + '</span>' +
-                '<button type="button" data-acao="aumentar" data-id="' + item.id + '" data-tamanho="' + item.tamanho + '">+</button>' +
+                '<button type="button" data-acao="diminuir" data-id="' + item.id + '" data-tamanho="' + item.tamanho + '" aria-label="Diminuir quantidade">−</button>' +
+                '<input type="number" class="input-qtd" min="1" value="' + item.qtd + '" data-id="' + item.id + '" data-tamanho="' + item.tamanho + '" aria-label="Quantidade">' +
+                '<button type="button" data-acao="aumentar" data-id="' + item.id + '" data-tamanho="' + item.tamanho + '" aria-label="Aumentar quantidade">+</button>' +
                 '</div></td>' +
                 '<td class="text-end fw-bold">' + formatarPreco(subtotal) + '</td>' +
                 '<td class="text-end">' +
@@ -102,6 +102,26 @@ document.addEventListener('click', function (evento) {
         return;
     }
 
+    atualizarBadge(document.getElementById('contador-carrinho'), Carrinho.contar());
+    renderizarCarrinho();
+});
+
+/* Digitação direta da quantidade */
+document.addEventListener('change', function (evento) {
+    const input = evento.target.closest('.input-qtd');
+    if (!input) return;
+
+    const id = input.dataset.id;
+    const tamanho = input.dataset.tamanho === 'null' ? null : parseInt(input.dataset.tamanho, 10);
+    const novaQtd = parseInt(input.value, 10);
+
+    /* Valor inválido: apenas re-renderiza para restaurar a quantidade salva */
+    if (!novaQtd || novaQtd < 1) {
+        renderizarCarrinho();
+        return;
+    }
+
+    Carrinho.definirQuantidade(id, tamanho, novaQtd);
     atualizarBadge(document.getElementById('contador-carrinho'), Carrinho.contar());
     renderizarCarrinho();
 });

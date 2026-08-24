@@ -8,7 +8,20 @@ document.addEventListener('DOMContentLoaded', function () {
     initNavLinkAtivo();
     initBotaoTopo();
     initCarrinho();
+    initCarrossel();
 });
+
+/* ---------- Carrossel da página inicial: rotação automática ---------- */
+function initCarrossel() {
+    const carrossel = document.getElementById('carrosselPrincipal');
+    if (!carrossel || typeof bootstrap === 'undefined') return;
+
+    bootstrap.Carousel.getOrCreateInstance(carrossel, {
+        interval: 5000,
+        ride: 'carousel',
+        wrap: true
+    }).cycle();
+}
 
 /* ---------- API global do carrinho ----------
    Usada pelo script principal, carrinho.html e checkout.html */
@@ -53,7 +66,18 @@ const Carrinho = {
 
         if (!item) return;
 
-        item.qtd = Math.max(1, item.qtd + delta);
+        this.definirQuantidade(id, tamanho, item.qtd + delta);
+    },
+
+    definirQuantidade: function (id, tamanho, qtd) {
+        const itens = this.obter();
+        const item = itens.find(function (i) {
+            return i.id === id && i.tamanho === tamanho;
+        });
+
+        if (!item) return;
+
+        item.qtd = Math.max(1, parseInt(qtd, 10) || 1);
         this.salvar(itens);
     },
 

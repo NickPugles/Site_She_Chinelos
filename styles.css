@@ -258,6 +258,22 @@ body {
     font-weight: 600;
 }
 
+.stepper .input-qtd {
+    width: 56px;
+    height: 32px;
+    padding: 0 4px;
+    text-align: center;
+    font-weight: 600;
+    color: #333;
+    border: 2px solid #ecd9e6;
+    border-radius: 8px;
+    outline: none;
+}
+
+.stepper .input-qtd:focus {
+    border-color: var(--rosa-principal);
+}
+
 .link-remover {
     border: none;
     background: none;
