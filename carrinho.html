@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Carrinho | She Chinelos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand fs-4" href="index.html">She Chinelos 👡</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="menuNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#produtos">Produtos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#sobre">Sobre</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#contato">Contato</a></li>
+                </ul>
+                <a href="carrinho.html" class="nav-link position-relative ms-lg-3" title="Carrinho de compras">
+                    🛒
+                    <span id="contador-carrinho" class="position-absolute top-0 start-100 badge rounded-pill bg-danger contador-carrinho">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Carrinho -->
+    <main class="container py-5">
+
+        <!-- Estado vazio -->
+        <div id="carrinho-vazio" class="text-center py-5 d-none">
+            <p style="font-size: 4rem;">🛒</p>
+            <h2 class="titulo-produto mb-3">Seu carrinho está vazio</h2>
+            <p class="text-muted mb-4">Que tal dar uma olhada nos nossos chinelos personalizados?</p>
+            <a href="index.html#produtos" class="btn btn-comprar px-5 py-2">Ver produtos</a>
+        </div>
+
+        <!-- Carrinho com itens -->
+        <div id="carrinho-conteudo">
+            <h1 class="titulo-produto mb-4">Meu Carrinho</h1>
+
+            <div class="row g-4">
+                <!-- Lista de itens -->
+                <div class="col-lg-8">
+                    <div class="card resumo-card">
+                        <div class="table-responsive">
+                            <table class="table align-middle mb-0">
+                                <thead>
+                                    <tr class="text-muted small">
+                                        <th scope="col">Produto</th>
+                                        <th scope="col" class="text-center">Tamanho</th>
+                                        <th scope="col" class="text-center">Qtd.</th>
+                                        <th scope="col" class="text-end">Subtotal</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="lista-carrinho"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <a href="index.html#produtos" class="link-produto d-inline-block mt-3">&larr; Continuar comprando</a>
+                </div>
+
+                <!-- Resumo do pedido -->
+                <div class="col-lg-4">
+                    <div class="card resumo-card p-4">
+                        <h5 class="fw-bold mb-3">Resumo do pedido</h5>
+
+                        <p class="small text-muted mb-1" id="mensagem-frete"></p>
+                        <div class="barra-frete mb-3">
+                            <div id="progresso-frete" style="width: 0%;"></div>
+                        </div>
+
+                        <div class="d-flex justify-content-between mb-1">
+                            <span class="text-muted">Subtotal</span>
+                            <span id="resumo-subtotal"></span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-1">
+                            <span class="text-muted">Frete</span>
+                            <span id="resumo-frete"></span>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="fw-bold fs-5">Total</span>
+                            <span class="preco-grande" id="resumo-total"></span>
+                        </div>
+
+                        <a href="checkout.html" class="btn btn-comprar btn-lg w-100">Finalizar compra &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Rodapé / Contato -->
+    <footer id="contato" class="pt-5 pb-4 mt-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h5>She Chinelos 👡</h5>
+                    <p class="mb-0">Chinelos personalizados de acordo com cada gosto.</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Contato</h5>
+                    <ul class="list-unstyled">
+                        <li>📞 (11) 99999-9999</li>
+                        <li>✉️ contato@shechinelos.com.br</li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Atendimento</h5>
+                    <p class="mb-1">Seg a Sex: 9h às 18h</p>
+                    <p>Sábado: 9h às 13h</p>
+                </div>
+            </div>
+            <hr style="border-color: rgba(255,255,255,0.3);">
+            <p class="text-center mb-0">&copy; 2026 She Chinelos — Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Toast de feedback -->
+    <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3">
+        <div id="toast-carrinho" class="toast align-items-center text-bg-success border-0" role="alert">
+            <div class="d-flex">
+                <div class="toast-body fw-semibold"></div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nvRwiSAnSnvIB7vviFoIcb7edmpP1NdiTsd+uU+" crossorigin="anonymous"></script>
+    <script src="catalogo.js"></script>
+    <script src="script.js"></script>
+    <script src="carrinho.js"></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produto | She Chinelos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand fs-4" href="index.html">She Chinelos 👡</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="menuNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#produtos">Produtos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#sobre">Sobre</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#contato">Contato</a></li>
+                </ul>
+                <a href="carrinho.html" class="nav-link position-relative ms-lg-3" title="Carrinho de compras">
+                    🛒
+                    <span id="contador-carrinho" class="position-absolute top-0 start-100 badge rounded-pill bg-danger contador-carrinho">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Produto -->
+    <main class="container py-5">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html" class="link-produto">Início</a></li>
+                <li class="breadcrumb-item"><a href="index.html#produtos" class="link-produto">Produtos</a></li>
+                <li class="breadcrumb-item active" aria-current="page" id="produto-breadcrumb">Produto</li>
+            </ol>
+        </nav>
+
+        <div class="row g-5 mt-1 align-items-start">
+            <!-- Imagem -->
+            <div class="col-md-6">
+                <img src="" class="produto-img" id="produto-imagem" alt="Imagem do produto">
+            </div>
+
+            <!-- Informações -->
+            <div class="col-md-6">
+                <span class="badge badge-novo mb-2 px-3 py-2 rounded-pill" id="produto-tag"></span>
+                <h1 class="titulo-produto mb-2" id="produto-nome"></h1>
+                <p class="mb-3">
+                    <s class="fs-6 text-muted me-2" id="produto-preco-antigo"></s>
+                    <span class="preco-grande" id="produto-preco"></span>
+                </p>
+                <p class="text-muted" id="produto-descricao"></p>
+
+                <h6 class="fw-bold mt-4 mb-2">Selecione o tamanho:</h6>
+                <div class="d-flex flex-wrap gap-2" id="tamanhos" role="group" aria-label="Tamanhos disponíveis de 33 a 41"></div>
+
+                <div id="aviso-tamanho" class="alert alert-warning py-2 mt-3 aviso-tamanho" role="alert">
+                    ⚠️ Selecione um tamanho antes de continuar.
+                </div>
+
+                <button type="button" class="btn btn-comprar btn-lg w-100 mt-2 btn-adicionar">
+                    🛒 Adicionar ao carrinho
+                </button>
+
+                <ul class="list-unstyled text-muted small mt-4">
+                    <li>✅ Frete grátis acima de R$ 99,00</li>
+                    <li>🔄 Troca fácil em até 30 dias</li>
+                    <li>🎨 Personalização inclusa</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <!-- Rodapé / Contato -->
+    <footer id="contato" class="pt-5 pb-4 mt-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h5>She Chinelos 👡</h5>
+                    <p class="mb-0">Chinelos personalizados de acordo com cada gosto.</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Contato</h5>
+                    <ul class="list-unstyled">
+                        <li>📞 (11) 99999-9999</li>
+                        <li>✉️ contato@shechinelos.com.br</li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Atendimento</h5>
+                    <p class="mb-1">Seg a Sex: 9h às 18h</p>
+                    <p>Sábado: 9h às 13h</p>
+                </div>
+            </div>
+            <hr style="border-color: rgba(255,255,255,0.3);">
+            <p class="text-center mb-0">&copy; 2026 She Chinelos — Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Toast: item adicionado ao carrinho -->
+    <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3">
+        <div id="toast-carrinho" class="toast align-items-center text-bg-success border-0" role="alert">
+            <div class="d-flex">
+                <div class="toast-body fw-semibold">✅ Produto adicionado ao carrinho!</div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nvRwiSAnSnvIB7vviFoIcb7edmpP1NdiTsd+uU+" crossorigin="anonymous"></script>
+    <script src="catalogo.js"></script>
+    <script src="script.js"></script>
+    <script src="produto.js"></script>
+</body>
+</html>

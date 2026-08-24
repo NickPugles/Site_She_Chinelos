@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizar Compra | She Chinelos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand fs-4" href="index.html">She Chinelos 👡</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="menuNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#produtos">Produtos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#sobre">Sobre</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#contato">Contato</a></li>
+                </ul>
+                <a href="carrinho.html" class="nav-link position-relative ms-lg-3" title="Carrinho de compras">
+                    🛒
+                    <span id="contador-carrinho" class="position-absolute top-0 start-100 badge rounded-pill bg-danger contador-carrinho">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Checkout -->
+    <main class="container py-5">
+
+        <!-- Estado: carrinho vazio -->
+        <div id="checkout-vazio" class="text-center py-5 d-none">
+            <p style="font-size: 4rem;">🛒</p>
+            <h2 class="titulo-produto mb-3">Não há nada para finalizar</h2>
+            <p class="text-muted mb-4">Adicione produtos ao carrinho antes de finalizar a compra.</p>
+            <a href="index.html#produtos" class="btn btn-comprar px-5 py-2">Ver produtos</a>
+        </div>
+
+        <!-- Checkout com itens -->
+        <div id="checkout-conteudo">
+            <h1 class="titulo-produto mb-4">Finalizar Compra</h1>
+
+            <form id="form-checkout" class="row g-4 needs-validation" novalidate>
+                <!-- Dados do cliente -->
+                <div class="col-lg-7">
+                    <div class="card resumo-card p-4 mb-4">
+                        <h5 class="fw-bold mb-3">1. Seus dados</h5>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="nome" class="form-label">Nome completo</label>
+                                <input type="text" class="form-control" id="nome" required minlength="3">
+                                <div class="invalid-feedback">Informe seu nome completo.</div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">E-mail</label>
+                                <input type="email" class="form-control" id="email" required>
+                                <div class="invalid-feedback">Informe um e-mail válido.</div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="telefone" class="form-label">Telefone</label>
+                                <input type="tel" class="form-control" id="telefone" placeholder="(11) 99999-9999" required pattern="[\d\s()\-\+]{10,}">
+                                <div class="invalid-feedback">Informe um telefone válido.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card resumo-card p-4 mb-4">
+                        <h5 class="fw-bold mb-3">2. Endereço de entrega</h5>
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <label for="cep" class="form-label">CEP</label>
+                                <input type="text" class="form-control" id="cep" placeholder="00000-000" required pattern="[\d\-]{8,9}">
+                                <div class="invalid-feedback">Informe um CEP válido.</div>
+                            </div>
+                            <div class="col-md-8">
+                                <label for="rua" class="form-label">Rua</label>
+                                <input type="text" class="form-control" id="rua" required>
+                                <div class="invalid-feedback">Informe o nome da rua.</div>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="numero" class="form-label">Número</label>
+                                <input type="text" class="form-control" id="numero" required>
+                                <div class="invalid-feedback">Obrigatório.</div>
+                            </div>
+                            <div class="col-md-9">
+                                <label for="complemento" class="form-label">Complemento (opcional)</label>
+                                <input type="text" class="form-control" id="complemento">
+                            </div>
+                            <div class="col-md-5">
+                                <label for="bairro" class="form-label">Bairro</label>
+                                <input type="text" class="form-control" id="bairro" required>
+                                <div class="invalid-feedback">Informe o bairro.</div>
+                            </div>
+                            <div class="col-md-5">
+                                <label for="cidade" class="form-label">Cidade</label>
+                                <input type="text" class="form-control" id="cidade" required>
+                                <div class="invalid-feedback">Informe a cidade.</div>
+                            </div>
+                            <div class="col-md-2">
+                                <label for="uf" class="form-label">UF</label>
+                                <input type="text" class="form-control text-uppercase" id="uf" maxlength="2" required>
+                                <div class="invalid-feedback">UF.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card resumo-card p-4">
+                        <h5 class="fw-bold mb-3">3. Forma de pagamento</h5>
+                        <div class="d-grid gap-2">
+                            <label class="pagamento-opcao selecionada">
+                                <input type="radio" name="pagamento" value="Pix" checked> 💠 Pix (5% de desconto)
+                            </label>
+                            <label class="pagamento-opcao">
+                                <input type="radio" name="pagamento" value="Cartão na entrega"> 💳 Cartão na entrega
+                            </label>
+                            <label class="pagamento-opcao">
+                                <input type="radio" name="pagamento" value="Boleto"> 🧾 Boleto bancário
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resumo -->
+                <div class="col-lg-5">
+                    <div class="card resumo-card p-4">
+                        <h5 class="fw-bold mb-3">Seu pedido</h5>
+                        <div id="resumo-itens" class="mb-3"></div>
+                        <hr>
+                        <div class="d-flex justify-content-between mb-1 small">
+                            <span class="text-muted">Subtotal</span>
+                            <span id="resumo-subtotal"></span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-1 small">
+                            <span class="text-muted">Frete</span>
+                            <span id="resumo-frete"></span>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between mb-4">
+                            <span class="fw-bold fs-5">Total</span>
+                            <span class="preco-grande" id="resumo-total"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-comprar btn-lg w-100">✅ Confirmar pedido</button>
+                        <a href="carrinho.html" class="link-produto d-block text-center mt-3">&larr; Voltar ao carrinho</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Pedido confirmado -->
+        <div id="pedido-sucesso" class="text-center py-5 d-none">
+            <p style="font-size: 4rem;">🎉</p>
+            <h2 class="titulo-produto mb-3">Pedido confirmado!</h2>
+            <p class="fs-5">Número do pedido: <strong id="numero-pedido" class="preco-grande"></strong></p>
+            <p class="text-muted mb-4">
+                Obrigado por comprar na She Chinelos! Você receberá as instruções
+                de pagamento e o código de rastreio por e-mail.
+            </p>
+            <a href="index.html" class="btn btn-comprar px-5 py-2">Voltar à loja</a>
+        </div>
+    </main>
+
+    <!-- Rodapé / Contato -->
+    <footer id="contato" class="pt-5 pb-4 mt-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h5>She Chinelos 👡</h5>
+                    <p class="mb-0">Chinelos personalizados de acordo com cada gosto.</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Contato</h5>
+                    <ul class="list-unstyled">
+                        <li>📞 (11) 99999-9999</li>
+                        <li>✉️ contato@shechinelos.com.br</li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Atendimento</h5>
+                    <p class="mb-1">Seg a Sex: 9h às 18h</p>
+                    <p>Sábado: 9h às 13h</p>
+                </div>
+            </div>
+            <hr style="border-color: rgba(255,255,255,0.3);">
+            <p class="text-center mb-0">&copy; 2026 She Chinelos — Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nvRwiSAnSnvIB7vviFoIcb7edmpP1NdiTsd+uU+" crossorigin="anonymous"></script>
+    <script src="catalogo.js"></script>
+    <script src="script.js"></script>
+    <script src="checkout.js"></script>
+</body>
+</html>
