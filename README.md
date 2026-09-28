@@ -1,8 +1,8 @@
 # She Chinelos 👡
 
-Site de loja virtual de chinelos personalizados, desenvolvido com **HTML, CSS e JavaScript puros** com o framework Bootstrap 5.
+Loja virtual de chinelos personalizados, agora construída com **Next.js 16**, **TypeScript**, **App Router** e **Tailwind CSS v4**.
 
-A **She Chinelos** é uma loja fictícia de chinelos personalizados "de acordo com cada gosto". O site apresenta um vitrine completo de e-commerce: carrossel de imagens na página inicial, catálogo de produtos, página de detalhe com seleção de tamanho (33 ao 41), carrinho de compras funcional e finalização de pedido.
+A **She Chinelos** é uma loja fictícia de chinelos personalizados "de acordo com cada gosto". O site apresenta uma vitrine completa de e-commerce: carrossel de imagens na página inicial, catálogo de produtos, página de detalhe com seleção de tamanho (33 ao 41), carrinho de compras funcional e finalização de pedido.
 
 ## Funcionalidades
 
@@ -15,38 +15,63 @@ A **She Chinelos** é uma loja fictícia de chinelos personalizados "de acordo c
 - ✅ Checkout com validação de formulário e número de pedido
 - 🧭 Navbar fixa com link ativo por seção e botão "voltar ao topo"
 
+## Como executar
+
+```bash
+npm install
+npm run dev
+```
+
+e acesse [http://localhost:3000](http://localhost:3000).
+
+Outros scripts:
+
+```bash
+npm run build      # build de produção
+npm run start      # serve o build de produção
+npm run lint       # ESLint (flat config)
+npm run typecheck  # tsc --noEmit
+```
+
+## Rotas
+
+| Rota              | Descrição                                                       |
+| ----------------- | --------------------------------------------------------------- |
+| `/`               | Página inicial: carrossel, vitrine de produtos e "Sobre Nós"    |
+| `/produto/[id]`   | Detalhe do produto (`/produto/p1` … `/produto/p8`)               |
+| `/carrinho`       | Carrinho de compras com ajuste de quantidade e resumo do pedido |
+| `/checkout`       | Finalização da compra com validação e número do pedido           |
+
 ## Estrutura do projeto
 
 ```
-├── index.html       # Página inicial (carrossel + vitrine)
-├── produto.html     # Detalhe do produto (produto.html?id=p1 ... p8)
-├── carrinho.html    # Carrinho de compras
-├── checkout.html    # Finalização da compra
-├── styles.css       # Folha de estilos (tema rosa, cards, responsividade)
-├── script.js        # Núcleo compartilhado + API do carrinho
-├── catalogo.js      # Catálogo de produtos (fonte única de dados)
-├── produto.js       # Renderização da página de produto + tamanhos
-├── carrinho.js      # Lógica da página do carrinho
-├── checkout.js      # Lógica do checkout
-├── Imagem_1.jpeg    # Foto do produto 1
-└── Imagem_2.jpeg    # Foto do produto 2
+├── public/imagens/            # Fotos dos produtos servidas pelo next/image
+├── src/app/
+│   ├── layout.tsx             # Metadata, providers, navbar, rodapé
+│   ├── globals.css            # Tailwind v4 + tokens do tema (@theme)
+│   ├── page.tsx               # /
+│   ├── produto/[id]/page.tsx  # /produto/[id] (rota estática)
+│   ├── carrinho/page.tsx      # /carrinho
+│   ├── checkout/page.tsx      # /checkout
+│   └── not-found.tsx
+├── src/components/
+│   ├── layout/                # Navbar, Footer, BotaoTopo
+│   └── ui/                    # Componentes reutilizáveis (carrossel, cards,
+│                              # tabela do carrinho, formulário, toast, ...)
+└── src/lib/                   # catalogo.ts, carrinho.ts, carrinho-context.tsx,
+                               # checkout.ts, utils.ts
 ```
 
-## Como executar
+## Onde ficam os dados
 
-Basta abrir o arquivo `index.html` em qualquer navegador moderno.
-
-Opcionalmente, sirva via servidor local:
-
-```bash
-python -m http.server 8000
-```
-
-e acesse `http://localhost:8000`.
+- **Produtos e tamanhos**: `src/lib/catalogo.ts` (fonte única de verdade, usada pelo servidor e pelo cliente).
+- **Carrinho**: `src/lib/carrinho.ts` (persistência em `localStorage`, chave `carrinhoItens`, regras de frete) e `src/lib/carrinho-context.tsx` (Context + `useSyncExternalStore`, seguro para SSR).
+- **Validação do checkout**: `src/lib/checkout.ts`.
 
 ## Tecnologias
 
-- HTML5
-- CSS3 (variáveis customizadas)
-- JavaScript (ES6+, sem frameworks)
-- [Bootstrap 5.3](https://getbootstrap.com/) via CDN
+- [Next.js 16](https://nextjs.org) (App Router, Turbopack)
+- [React 19](https://react.dev)
+- [TypeScript 5](https://www.typescriptlang.org)
+- [Tailwind CSS v4](https://tailwindcss.com)
+- [ESLint 9](https://eslint.org) com flat config (`eslint-config-next`)

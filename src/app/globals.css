@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@theme {
+  --color-rosa: #d63384;
+  --color-rosa-escuro: #a02660;
+  --color-rosa-claro: #fce4f1;
+  --color-rosa-borda: #ecd9e6;
+  --color-creme: #fffafc;
+  --color-texto-suave: #7a5270;
+
+  --shadow-card: 0 4px 14px rgb(0 0 0 / 0.08);
+  --shadow-card-hover: 0 10px 24px rgb(214 51 132 / 0.25);
+
+  --font-sans: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+  --animate-pulso: pulso 0.35s ease;
+}
+
+@keyframes pulso {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.6);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background-color: var(--color-creme);
+  color: #333;
+  font-family: var(--font-sans);
+}
